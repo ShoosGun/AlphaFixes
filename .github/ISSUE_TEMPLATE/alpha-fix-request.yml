@@ -9,7 +9,7 @@ body:
     label: Version
     description: What version of the alpha were you playing?
     options:
-    - 1.2 (The one from the mods website)
+    - 1.2
     - Fig 
     - IGF Build 2013-07-30 
   validations:
