@@ -4,7 +4,7 @@ title: "[Fix Request]: "
 labels: ["fix request"]
 assignees:
 body:  
-  - type: dropdown
+- type: dropdown
     id: version
     attributes:
       label: Version
@@ -15,7 +15,7 @@ body:
         - IGF Build 2013-07-30 
     validations:
       required: true
-  - type: textarea
+- type: textarea
     id: issue
     attributes:
       label: What problem did you encounter?
@@ -24,7 +24,7 @@ body:
       value: "My ship just flew away by itself!"
     validations:
       required: true
-   - type: textarea
+- type: textarea
     id: description
     attributes:
       label: How did this problem start to happen, or was it present since booting the game?
@@ -33,13 +33,13 @@ body:
       value: ""
     validations:
       required: true
-  - type: textarea
+- type: textarea
     id: outputLog
     attributes:
       label: output_log.txt file.
       description: If the issue is related to a game crashed or a game breaking bug, please copy here the contents of the output_log.txt (you can remove any personal information that it has if you want).
       render: shell      
-  - type: textarea
+- type: textarea
     id: crashLog
     attributes:
       label: Crash error file.
