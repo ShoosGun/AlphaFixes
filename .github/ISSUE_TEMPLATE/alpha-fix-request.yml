@@ -2,7 +2,6 @@ name: Alpha Fix Request
 description: Use this to request a fix for a problem you found in the alpha.
 title: "[Fix Request]: "
 labels: ["fix request"]
-assignees:
 body:  
 - type: dropdown
   id: version
