@@ -28,8 +28,8 @@ body:
   attributes:
     label: How did this problem start to happen, or was it present since booting the game?
     description: Explain with the most amount of details as possible, this will help tracking down the source of the problem.
-    placeholder: 
-    value: ""
+    placeholder: My ship went vooosh
+    value: "My ship went vooosh"
   validations:
     required: true
 - type: textarea
