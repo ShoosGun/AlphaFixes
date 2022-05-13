@@ -8,4 +8,4 @@ The current issues that it solves are:
 
 This plugin will generate a config file so you can customize the patches to fit your situation better.
 
-If any issue that isn't covered by this mod happens to you, please open a [new issue](https://github.com/ShoosGun/AlphaFixes/issues/new) in this repo and tell what is the problem, and how it is happening.
+If any issue that isn't covered by this mod happens to you, please open a [new issue](https://github.com/ShoosGun/AlphaFixes/issues/new?assignees=&labels=fix+request&template=alpha-fix-request.yml&title=%5BFix+Request%5D%3A+) in this repo and tell what is the problem, and how it is happening.
