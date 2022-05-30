@@ -7,6 +7,7 @@ This plugin/mod helps fixing some issues that someone might encounter while play
 The current issues that it solves are:
 
 * Input being missread due to the game running at a frame rate that is too high
+* OWAudioSource giving error while in the main menu
 
 This plugin will generate a config file so you can customize the patches to fit your situation better.
 
