@@ -1,0 +1,46 @@
+name: Alpha Fix Request
+description: Use this to request a fix for a problem you found in the alpha.
+title: "[Fix Request]: "
+labels: ["fix request"]
+body:  
+- type: dropdown
+  id: version
+  attributes:
+    label: Version
+    description: What version of the alpha were you playing?
+    options:
+    - 1.2
+    - Fig 
+    - IGF Build 2013-07-30 
+  validations:
+    required: true
+- type: textarea
+  id: issue
+  attributes:
+    label: What problem did you encounter?
+    description:
+    placeholder: My ship just flew away by itself!
+    value: "My ship just flew away by itself!"
+  validations:
+    required: true
+- type: textarea
+  id: description
+  attributes:
+    label: How did this problem start to happen, or was it present since booting the game?
+    description: Explain with the most amount of details as possible, this will help tracking down the source of the problem.
+    placeholder: My ship went vooosh
+    value: "My ship went vooosh"
+  validations:
+    required: true
+- type: textarea
+  id: outputLog
+  attributes:
+    label: output_log.txt file.
+    description: If the issue is related to a game crashed or a game breaking bug, please copy here the contents of the output_log.txt (you can remove any personal information that it has if you want).
+    render: shell      
+- type: textarea
+  id: crashLog
+  attributes:
+    label: Crash error file.
+    description: If the problem produced a crash, it probabilly will have generated a crash folder with a error.txt file, if so please copy its contents to here (and you can remove any personal information that it has if you want).
+    render: shell
