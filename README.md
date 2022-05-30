@@ -1,5 +1,7 @@
 # AlphaFixes
 
+# ![AlphaFixesIcon](readmefigures/modIcon.png)
+
 This plugin/mod helps fixing some issues that someone might encounter while playing the alpha of Outer Wilds.
 
 The current issues that it solves are:
