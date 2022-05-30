@@ -18,7 +18,6 @@ C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\bin\Release\DecalSystem.
 C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\bin\Release\Boo.Lang.dll
 C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\bin\Release\UnityScript.Lang.dll
 C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\bin\Release\0Harmony.xml
-C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\bin\Release\BepInEx.xml
 C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\bin\Release\MonoMod.Utils.xml
 C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\bin\Release\MonoMod.RuntimeDetour.xml
 C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\obj\Release\AlphaFixes.csproj.AssemblyReference.cache
@@ -26,3 +25,8 @@ C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\obj\Release\AlphaFixes.c
 C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\obj\Release\AlphaFixes.csproj.CopyComplete
 C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\obj\Release\AlphaFixes.dll
 C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\obj\Release\AlphaFixes.pdb
+C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\bin\Release\AlphaFixes.dll.config
+C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\bin\Release\Assembly-UnityScript.dll
+C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\bin\Release\Mono.Cecil.Mdb.dll
+C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\bin\Release\Mono.Cecil.Pdb.dll
+C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes\bin\Release\Mono.Cecil.Rocks.dll

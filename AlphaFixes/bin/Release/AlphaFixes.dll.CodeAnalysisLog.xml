@@ -6,10 +6,10 @@
    <Modules>
     <Module Name="alphafixes.dll">
      <Messages>
-      <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Active" Created="2022-05-13 00:09:21Z" FixCategory="NonBreaking">
+      <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Active" Created="2022-05-30 01:15:52Z" FixCategory="NonBreaking">
        <Issue Name="NoStrongName" Certainty="95" Level="CriticalError">Assine 'AlphaFixes.dll' com uma chave de nome forte.</Issue>
       </Message>
-      <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Status="Active" Created="2022-05-13 00:09:21Z" FixCategory="NonBreaking">
+      <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Status="Active" Created="2022-05-30 01:15:52Z" FixCategory="NonBreaking">
        <Issue Certainty="95" Level="Error">Marque 'AlphaFixes.dll' com CLSCompliant(true) porque expõe externamente os tipos visíveis.</Issue>
       </Message>
      </Messages>
@@ -18,30 +18,52 @@
        <Types>
         <Type Name="AlphaFixesMod" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="AttributeStringLiteralsShouldParseCorrectly" Category="Microsoft.Usage" CheckId="CA2243" Status="Active" Created="2022-05-13 00:09:21Z" FixCategory="NonBreaking">
+          <Message TypeName="AttributeStringLiteralsShouldParseCorrectly" Category="Microsoft.Usage" CheckId="CA2243" Status="Active" Created="2022-05-30 01:15:52Z" FixCategory="NonBreaking">
            <Issue Certainty="75" Level="Warning">No construtor de 'BepInPlugin', altere o valor do argumento 'GUID', o qual é "Locochoco.OWA.AlphaFixes", para algo que possa ser analisado corretamente como 'Guid'.</Issue>
+          </Message>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2022-05-30 01:15:52Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable em 'AlphaFixesMod' porque cria membros dos seguintes tipos IDisposable: 'Harmony'. Se 'AlphaFixesMod' tiver enviado anteriormente, adicionar novos membros que implementem IDisposable a esse tipo é considerado uma alteração interruptiva para os consumidores existentes.</Issue>
           </Message>
          </Messages>
          <Members>
-          <Member Name="#Awake()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+          <Member Name="#HarmonyInstance" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2022-05-13 00:09:21Z" FixCategory="NonBreaking">
-             <Issue Certainty="75" Level="Warning" Path="C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes" File="AlphaFixesMod.cs" Line="16">'AlphaFixesMod.Awake()' parece não ter chamadores protegidos ou públicos upstream.</Issue>
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2022-05-30 01:15:52Z" FixCategory="Breaking">
+             <Issue Certainty="90" Level="Error">Como o campo 'AlphaFixesMod.HarmonyInstance' é visível fora de seu tipo declarativo, altere sua acessibilidade para privada e adicione um propriedade, com a mesma acessibilidade que o campo tem atualmente para fornecer acesso a ele.</Issue>
             </Message>
            </Messages>
           </Member>
+          <Member Name="#Instance" Kind="Field" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="NonConstantFieldsShouldNotBeVisible" Category="Microsoft.Usage" CheckId="CA2211" Status="Active" Created="2022-05-30 01:15:52Z" FixCategory="Breaking">
+             <Issue Certainty="90" Level="Warning">Considere tornar 'AlphaFixesMod.Instance' não público ou uma constante.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="FrameRateFix" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
           <Member Name="#OnGUI()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2022-05-13 00:09:21Z" FixCategory="NonBreaking">
-             <Issue Certainty="75" Level="Warning" Path="C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes" File="AlphaFixesMod.cs" Line="38">'AlphaFixesMod.OnGUI()' parece não ter chamadores protegidos ou públicos upstream.</Issue>
+            <Message Id="UnityEngine.GUI.Box(UnityEngine.Rect,System.String)" TypeName="Não passar literais como parâmetros localizados" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2022-05-30 01:15:52Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes" File="FrameRateFix.cs" Line="44">O método 'FrameRateFix.OnGUI()' passa uma cadeia de caracteres literal como parâmetro "text" de uma chamada para 'GUI.Box(Rect, string)'. Recupere as seguintes cadeias de caracteres de uma tabela de recursos: "FPS (Physics): ".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes" File="FrameRateFix.cs" Line="43">O método 'FrameRateFix.OnGUI()' passa uma cadeia de caracteres literal como parâmetro "text" de uma chamada para 'GUI.Box(Rect, string)'. Recupere as seguintes cadeias de caracteres de uma tabela de recursos: "FPS : ".</Issue>
             </Message>
-            <Message Id="UnityEngine.GUI.Box(UnityEngine.Rect,System.String)" TypeName="Não passar literais como parâmetros localizados" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2022-05-13 00:09:21Z" FixCategory="DependsOnFix">
-             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes" File="AlphaFixesMod.cs" Line="41">O método 'AlphaFixesMod.OnGUI()' passa uma cadeia de caracteres literal como parâmetro "text" de uma chamada para 'GUI.Box(Rect, string)'. Recupere as seguintes cadeias de caracteres de uma tabela de recursos: "FPS (Physics): ".</Issue>
-             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes" File="AlphaFixesMod.cs" Line="40">O método 'AlphaFixesMod.OnGUI()' passa uma cadeia de caracteres literal como parâmetro "text" de uma chamada para 'GUI.Box(Rect, string)'. Recupere as seguintes cadeias de caracteres de uma tabela de recursos: "FPS : ".</Issue>
+            <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2022-05-30 01:15:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes" File="FrameRateFix.cs" Line="43">Como o comportamento de 'int.ToString()' pode variar de acordo com as configurações de localidade atuais do usuário, substitua esta chamada em 'FrameRateFix.OnGUI()' por uma chamada para 'int.ToString(IFormatProvider)'. Se o resultado de 'int.ToString(IFormatProvider)' for exibido ao usuário, especifique 'CultureInfo.CurrentCulture' como o parâmetro "IFormatProvider". Caso contrário, se o resultado for armazenado e acessado pelo software, como quando persiste em disco ou em um banco de dados, especifique 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes" File="FrameRateFix.cs" Line="44">Como o comportamento de 'int.ToString()' pode variar de acordo com as configurações de localidade atuais do usuário, substitua esta chamada em 'FrameRateFix.OnGUI()' por uma chamada para 'int.ToString(IFormatProvider)'. Se o resultado de 'int.ToString(IFormatProvider)' for exibido ao usuário, especifique 'CultureInfo.CurrentCulture' como o parâmetro "IFormatProvider". Caso contrário, se o resultado for armazenado e acessado pelo software, como quando persiste em disco ou em um banco de dados, especifique 'CultureInfo.InvariantCulture'.</Issue>
             </Message>
-            <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2022-05-13 00:09:21Z" FixCategory="NonBreaking">
-             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes" File="AlphaFixesMod.cs" Line="40">Como o comportamento de 'int.ToString()' pode variar de acordo com as configurações de localidade atuais do usuário, substitua esta chamada em 'AlphaFixesMod.OnGUI()' por uma chamada para 'int.ToString(IFormatProvider)'. Se o resultado de 'int.ToString(IFormatProvider)' for exibido ao usuário, especifique 'CultureInfo.CurrentCulture' como o parâmetro "IFormatProvider". Caso contrário, se o resultado for armazenado e acessado pelo software, como quando persiste em disco ou em um banco de dados, especifique 'CultureInfo.InvariantCulture'.</Issue>
-             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="C:\Users\Pichau\Desktop\programas\AlphaFixes\AlphaFixes" File="AlphaFixesMod.cs" Line="41">Como o comportamento de 'int.ToString()' pode variar de acordo com as configurações de localidade atuais do usuário, substitua esta chamada em 'AlphaFixesMod.OnGUI()' por uma chamada para 'int.ToString(IFormatProvider)'. Se o resultado de 'int.ToString(IFormatProvider)' for exibido ao usuário, especifique 'CultureInfo.CurrentCulture' como o parâmetro "IFormatProvider". Caso contrário, se o resultado for armazenado e acessado pelo software, como quando persiste em disco ou em um banco de dados, especifique 'CultureInfo.InvariantCulture'.</Issue>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="GameFix" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#IsFixEnabled" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2022-05-30 01:15:52Z" FixCategory="Breaking">
+             <Issue Certainty="90" Level="Error">Como o campo 'GameFix.IsFixEnabled' é visível fora de seu tipo declarativo, altere sua acessibilidade para privada e adicione um propriedade, com a mesma acessibilidade que o campo tem atualmente para fornecer acesso a ele.</Issue>
             </Message>
            </Messages>
           </Member>
@@ -75,15 +97,15 @@
    <MessageLevel Certainty="75">Warning</MessageLevel>
    <File Name="usagerules.dll" Version="17.0.0.0" />
   </Rule>
-  <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
-   <Name>Evite código particular não chamado</Name>
-   <Description>Há um código não chamado que não é visível externamente e não é um ponto de entrada de tempo de execução conhecido. Se essa violação for disparada por engano, envie um relatório do problema para a equipe do Visual Studio Code Analysis.</Description>
-   <Resolution Name="Default">{0} parece não ter chamadores protegidos ou públicos upstream.</Resolution>
+  <Rule TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051">
+   <Name>Não declarar campos de instância visíveis</Name>
+   <Description>Os campos de instância que são visíveis fora do tipo que os declara, limite sua capacidade de alterar os detalhes da implementação para esses itens de dados. Use propriedades. Elas não comprometem a usabilidade nem o desempenho e fornecem flexibilidade para ocultar os detalhes da implementação dos dados subjacentes.</Description>
+   <Resolution Name="Default">Como o campo {0} é visível fora de seu tipo declarativo, altere sua acessibilidade para privada e adicione um propriedade, com a mesma acessibilidade que o campo tem atualmente para fornecer acesso a ele.</Resolution>
    <Owner />
-   <Url>http://msdn.microsoft.com/library/ms182264.aspx</Url>
+   <Url>http://msdn.microsoft.com/library/ms182141.aspx</Url>
    <Email>[none]</Email>
-   <MessageLevel Certainty="75">Warning</MessageLevel>
-   <File Name="performancerules.dll" Version="17.0.0.0" />
+   <MessageLevel Certainty="90">Error</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
   </Rule>
   <Rule TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014">
    <Name>Marcar assemblies com CLSCompliantAttribute</Name>
@@ -94,6 +116,16 @@
    <Email>[none]</Email>
    <MessageLevel Certainty="95">Error</MessageLevel>
    <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="NonConstantFieldsShouldNotBeVisible" Category="Microsoft.Usage" CheckId="CA2211">
+   <Name>Campos não constantes não devem ser visíveis</Name>
+   <Description>Campos estáticos devem ser constantes, a menos que você gerencie cuidadosamente o acesso ao campo usando bloqueios. Usar variáveis estáticas sem torná-las seguras para thread pode comprometer o estado da execução. Esta regra aplica-se a bibliotecas de código gerenciadas. Se o assembly analisado é um aplicativo, é normalmente seguro excluir violações desta regra.</Description>
+   <Resolution Name="Default">Considere tornar {0} não público ou uma constante.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182353.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Warning</MessageLevel>
+   <File Name="usagerules.dll" Version="17.0.0.0" />
   </Rule>
   <Rule TypeName="Não passar literais como parâmetros localizados" Category="Microsoft.Globalization" CheckId="CA1303">
    <Name>Não passar literais como parâmetros localizados</Name>
@@ -114,6 +146,16 @@
    <Email>[none]</Email>
    <MessageLevel Certainty="95">Error</MessageLevel>
    <File Name="globalizationrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001">
+   <Name>Tipos que possuem campos descartáveis devem ser descartáveis</Name>
+   <Description>Os tipos que declaram membros descartáveis também devem implementar IDisposable. Se o tipo não tiver recursos próprios não gerenciados, não implemente um finalizador nele.</Description>
+   <Resolution Name="DependsOnFix">Implemente IDisposable em {0} porque cria membros dos seguintes tipos IDisposable: {1}. Se {0} tiver enviado anteriormente, adicionar novos membros que implementem IDisposable a esse tipo é considerado uma alteração interruptiva para os consumidores existentes.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182172.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
   </Rule>
  </Rules>
  <Localized>
