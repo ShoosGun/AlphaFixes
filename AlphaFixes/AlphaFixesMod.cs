@@ -4,7 +4,7 @@ using HarmonyLib;
 
 namespace AlphaFixes
 {
-    [BepInPlugin("Locochoco.OWA.AlphaFixes", "Alpha Fixes", "1.1.0")]
+    [BepInPlugin("Locochoco.OWA.AlphaFixes", "Alpha Fixes", "1.1.1")]
     [BepInProcess("OuterWilds_Alpha_1_2.exe")]
     public class AlphaFixesMod : BaseUnityPlugin
     {

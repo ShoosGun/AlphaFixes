@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using System.Reflection;
+using UnityEngine;
 namespace AlphaFixes
 {
     internal class OWAudioSourceFix : GameFix
@@ -12,29 +13,21 @@ namespace AlphaFixes
         {
             if (!IsFixEnabled.Value)
                 return;
-
-            MethodInfo OWAudioSourceAwake = AccessTools.Method(typeof(OWAudioSource), "Awake");
-            MethodInfo OWAudioSourceOnDestroy = AccessTools.Method(typeof(OWAudioSource), "OnDestroy");
-
-            HarmonyMethod awakePrefix = new HarmonyMethod(typeof(OWAudioSourceFix), nameof(OWAudioSourceFix.OWAudioSourceAwakePrefix));
-            HarmonyMethod onDestroyPrefix = new HarmonyMethod(typeof(OWAudioSourceFix), nameof(OWAudioSourceFix.OWAudioSourceOnDestroyPrefix));
-
-            AlphaFixesMod.Instance.HarmonyInstance.Patch(OWAudioSourceAwake, prefix: awakePrefix);
-            AlphaFixesMod.Instance.HarmonyInstance.Patch(OWAudioSourceOnDestroy, prefix: onDestroyPrefix);
+            
+            MethodInfo LocatorGetAudioMixer = AccessTools.Method(typeof(Locator), "GetAudioMixer");
+            HarmonyMethod getAudioMixerPostfix = new HarmonyMethod(typeof(OWAudioSourceFix), nameof(OWAudioSourceFix.GetAudioMixerPostfix));
+            AlphaFixesMod.Instance.HarmonyInstance.Patch(LocatorGetAudioMixer, postfix: getAudioMixerPostfix);
         }
-
-        public static bool OWAudioSourceAwakePrefix(OWAudioSource __instance) 
+        private static AudioMixer audioMixerInstance;
+        public static void GetAudioMixerPostfix(ref AudioMixer __result) 
         {
-            if (Locator.GetAudioMixer() == null)
+            if(__result == null && Application.loadedLevel == 0) 
             {
-                __instance.enabled = false;
-                return false;
+                if(audioMixerInstance == null)
+                    audioMixerInstance = GameObject.Find("Root").GetComponent<AudioMixer>();
+
+                __result = audioMixerInstance;
             }
-            return true;
-        }
-        public static bool OWAudioSourceOnDestroyPrefix(OWAudioSource __instance)
-        {
-            return __instance._audioTrack != null;
         }
     }
 }
